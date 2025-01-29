@@ -27,7 +27,7 @@ spring:
     #      host: smtp-mail.outlook.com
     host: smtp.qq.com
     username: 1073971990@qq.com
-    password: vftvaghzytumfgag
+    password:
     port: 465            # For TLS, use 465 for SSLS
     default-encoding: UTF-8
     # 使用的协议

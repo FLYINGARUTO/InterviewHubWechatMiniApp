@@ -43,7 +43,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
         Random random=new Random();
         String code=String.format("%06d",random.nextInt(1000000));
         Map<String,Object> map= Map.of("type",type,"email",email,"code",code);
-        amqpTemplate.convertAndSend("mail",map);
+        //amqpTemplate.convertAndSend("mail",map);
         redisTemplate.opsForValue().set(concatRedisKey(email),code);
         System.out.println("Verification code is "+code);
         System.out.println("mail sent successfully");
