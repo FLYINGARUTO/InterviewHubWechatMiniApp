@@ -1,0 +1,40 @@
+{
+  "pages": [
+    "pages/login",
+    "pages/reg/reg",
+    "pages/reg/reg-success",
+    "pages/index/index",
+    "pages/my/my",
+    "pages/articles/articles"
+  ],
+  "window": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "uni-app",
+    "navigationBarBackgroundColor": "#d2302c",
+    "backgroundColor": "#F8F8F8"
+  },
+  "tabBar": {
+    "selectedColor": "#d2302c",
+    "list": [
+      {
+        "text": "首页",
+        "pagePath": "pages/index/index",
+        "iconPath": "static/icon/home0.png",
+        "selectedIconPath": "static/icon/home1.png"
+      },
+      {
+        "text": "帖子",
+        "pagePath": "pages/articles/articles",
+        "iconPath": "static/icon/publish0.png",
+        "selectedIconPath": "static/icon/publish1.png"
+      },
+      {
+        "text": "我的",
+        "pagePath": "pages/my/my",
+        "selectedIconPath": "static/icon/my1.png",
+        "iconPath": "static/icon/my0.png"
+      }
+    ]
+  },
+  "usingComponents": {}
+}

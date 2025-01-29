@@ -1,0 +1,1 @@
+<view class="class1"><image src="{{a}}" style="margin-top:50px"></image><text style="font-weight:bold;font-size:20px;margin-bottom:20px">Registered Successfully!</text><text style="font-size:16px;margin-bottom:10px">You can now explore our sites~</text><button style="width:100%" bindtap="{{b}}">Login Now</button></view>

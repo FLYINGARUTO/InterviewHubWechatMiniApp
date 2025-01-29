@@ -1,0 +1,24 @@
+/* 水平间距 */
+/* 水平间距 */
+.other-action {
+  padding: 0 30px;
+  color: cornflowerblue;
+  justify-content: space-between;
+  display: flex;
+}
+.bottom-view {
+  box-sizing: border-box;
+  position: absolute;
+  bottom: 50px;
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+}
+.bottom-view .icon {
+  width: 46px;
+  height: 46px;
+  border-radius: 23px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

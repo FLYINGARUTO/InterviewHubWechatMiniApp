@@ -1,0 +1,1 @@
+{"version":3,"file":"config.js","sources":["config/config.js"],"sourcesContent":["const config={\n\tapiBaseUrl : \"http://localhost:9999\"\n}\nexport default config"],"names":[],"mappings":";AAAK,MAAC,SAAO;AAAA,EACZ,YAAa;AACd;;"}

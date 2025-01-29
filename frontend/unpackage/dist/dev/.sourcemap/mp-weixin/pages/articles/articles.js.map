@@ -1,0 +1,1 @@
+{"version":3,"file":"articles.js","sources":["pages/articles/articles.vue?type=page"],"sourcesContent":["import MiniProgramPage from '/Users/flyingbuta/Desktop/WechatMini/frontend/pages/articles/articles.vue'\nwx.createPage(MiniProgramPage)"],"names":[],"mappings":";;;;;;;AACA,GAAG,WAAW,eAAe;"}
