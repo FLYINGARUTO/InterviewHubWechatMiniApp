@@ -1,0 +1,68 @@
+server:
+  port: 9999
+  servlet:
+    encoding:
+      charset: utf-8
+      enabled: true
+      force: true
+spring:
+  amqp:
+    deserialization:
+      trust:
+        all: true
+  datasource:
+    username: root
+    password: lx120688
+    url: jdbc:mysql:///wechat_mini
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT
+
+  data:
+    redis:
+      port: 6379
+      host: localhost
+
+  mail:
+    #      host: smtp-mail.outlook.com
+    host: smtp.qq.com
+    username: 1073971990@qq.com
+    password: vftvaghzytumfgag
+    port: 465            # For TLS, use 465 for SSLS
+    default-encoding: UTF-8
+    # 使用的协议
+    protocol: smtps
+    # 其他的属性
+    properties:
+      "mail.smtp.connectiontimeout": 5000
+      "mail.smtp.timeout": 3000
+      "mail.smtp.writetimeout": 5000
+      "mail.smtp.auth": true
+      "mail.smtp.starttls.enable": true
+      "mail.smtp.starttls.required": true
+  #      properties:
+  #        mail.smtp.auth: true
+  #        mail.smtp.starttls.enable: true
+  #        mail.smtp.starttls.required: true
+  rabbitmq:
+    addresses: localhost
+    username: guest
+    password: guest
+    virtual-host: /
+    port: 5672
+logging:
+  level:
+    com.m51: debug
+
+my:
+  jwt:
+    expire: 60
+    secret: 12345678901234567890123456789012
+  minio:
+    endpoint: 127.0.0.1
+    port: 9000
+    accessKey: minioadmin
+    secretKey: minioadmin
+    secure: false
+    bucketName: "m51"
+    expiry: 8
