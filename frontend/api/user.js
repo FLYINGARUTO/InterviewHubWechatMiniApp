@@ -22,5 +22,25 @@ export default{
 			method:"POST",
 			data: user
 		})
+	},
+	login(user){
+		return request({
+			url: `/user/login`,
+			method:"POST",
+			data: user
+		})
+	},
+	logout(){
+	
+		return request({
+			url: `/user/logout`,
+			method:"POST",
+		})
+	},
+	getUserInfo(token){
+		return request({
+			url: `/user/info/${token}`,
+
+		})
 	}
 }

@@ -30,7 +30,7 @@
 			<view class="icon" style="background-color: #fb666c;">
 				<uni-icons type="weibo" size="32" color="white"></uni-icons>
 			</view>
-			
+			 
 		</view>
 		
 	</view>
@@ -38,6 +38,8 @@
 
 <script setup>
 import { reactive,ref } from 'vue';
+import storage from '../utils/storage';
+import {useUserStore} from '../stores/user.js'
 const formData=reactive({
 	username:"",
 	password:""
@@ -63,8 +65,22 @@ const toReg=()=>{
 	})
 }
 const login=()=>{
-	formRef.value.validate().then(res=>{
-		console.log("验证通过：",res)
+	const store=useUserStore()
+	formRef.value.validate().then( res=>{
+		console.log("表单规则验证通过：",res)
+		
+		store.login(formData.username,formData.password).then(res=>{
+			uni.showToast({
+				title:"login success"
+			})
+			uni.switchTab({
+				url:"/pages/index/index"
+			})
+		}).catch(err=>{
+			console.log("login failed:",err)
+		})
+		
+	
 	}).catch(err=>{
 		console.log("错误信息：",err)
 	})

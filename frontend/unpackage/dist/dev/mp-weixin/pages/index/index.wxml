@@ -1,1 +1,1 @@
-<view style="text-align:center"> 首页 </view>
+<view style="text-align:center"> 首页 {{a}} <button bindtap="{{b}}">Login Page</button></view>

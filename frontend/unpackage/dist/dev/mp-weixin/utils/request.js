@@ -28,7 +28,7 @@ const request = (option) => {
             // Show the error message
           });
           setTimeout(() => {
-            reject(new Error(res.statusCode));
+            reject(new Error(errInfo));
           }, 3e3);
         }
       },

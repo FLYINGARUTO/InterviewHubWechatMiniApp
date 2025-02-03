@@ -1,6 +1,7 @@
 "use strict";
 const common_vendor = require("../common/vendor.js");
 const common_assets = require("../common/assets.js");
+const stores_user = require("../stores/user.js");
 if (!Array) {
   const _easycom_uni_easyinput2 = common_vendor.resolveComponent("uni-easyinput");
   const _easycom_uni_forms_item2 = common_vendor.resolveComponent("uni-forms-item");
@@ -43,10 +44,21 @@ const _sfc_main = {
       });
     };
     const login = () => {
+      const store = stores_user.useUserStore();
       formRef.value.validate().then((res) => {
-        common_vendor.index.__f__("log", "at pages/login.vue:67", "验证通过：", res);
+        common_vendor.index.__f__("log", "at pages/login.vue:70", "表单规则验证通过：", res);
+        store.login(formData.username, formData.password).then((res2) => {
+          common_vendor.index.showToast({
+            title: "login success"
+          });
+          common_vendor.index.switchTab({
+            url: "/pages/index/index"
+          });
+        }).catch((err) => {
+          common_vendor.index.__f__("log", "at pages/login.vue:80", "login failed:", err);
+        });
       }).catch((err) => {
-        common_vendor.index.__f__("log", "at pages/login.vue:69", "错误信息：", err);
+        common_vendor.index.__f__("log", "at pages/login.vue:85", "错误信息：", err);
       });
     };
     return (_ctx, _cache) => {

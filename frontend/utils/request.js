@@ -24,7 +24,7 @@ const request = (option) => {
                         title: errInfo // Show the error message
                     });
                     setTimeout(() => {
-                        reject(new Error(res.statusCode)); // Reject the promise after a delay
+                        reject(new Error(errInfo)); // Reject the promise after a delay
                     }, 3000);
                 }
             },

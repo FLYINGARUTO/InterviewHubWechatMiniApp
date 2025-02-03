@@ -1,0 +1,1 @@
+{"version":3,"file":"intercept.js","sources":["utils/intercept.js"],"sourcesContent":["uni.addInterceptor('request',{\n\tinvoke(args) {\n\t\tconsole.log('------invoke----args---> ',args)\n\t}\n})"],"names":["uni"],"mappings":";;AAAAA,cAAAA,MAAI,eAAe,WAAU;AAAA,EAC5B,OAAO,MAAM;AACZA,kBAAAA,MAAA,MAAA,OAAA,2BAAY,6BAA4B,IAAI;AAAA,EAC5C;AACF,CAAC;"}

@@ -22,6 +22,24 @@ const userApi = {
       method: "POST",
       data: user
     });
+  },
+  login(user) {
+    return utils_request.request({
+      url: `/user/login`,
+      method: "POST",
+      data: user
+    });
+  },
+  logout() {
+    return utils_request.request({
+      url: `/user/logout`,
+      method: "POST"
+    });
+  },
+  getUserInfo(token) {
+    return utils_request.request({
+      url: `/user/info/${token}`
+    });
   }
 };
 exports.userApi = userApi;
