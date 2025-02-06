@@ -41,6 +41,7 @@ public class JWTAuthenticationFilter extends OncePerRequestFilter {
                 &&uri.indexOf("swagger-ui")<0
                 &&uri.indexOf("/v3")<0
                 &&uri.indexOf("/favicon.ico")<0
+                &&uri.indexOf("/base")<0
 
         ){
             log.debug("------> jwt authentication started : "+uri);

@@ -4,6 +4,7 @@ import com.m51.article.entity.Article;
 import com.m51.article.mapper.ArticleMapper;
 import com.m51.article.service.IArticleService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.m51.user.entity.User;
 import org.springframework.stereotype.Service;
 
 /**
@@ -17,4 +18,12 @@ import org.springframework.stereotype.Service;
 @Service
 public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article> implements IArticleService {
 
+    @Override
+    public boolean publish(Article articleBody , User user) {
+        articleBody.setAuthorId(user.getId());
+        articleBody.setAvatar(user.getAvatar());
+        articleBody.setAuthorName(user.getNickname());
+        articleBody.setDeleted(0);
+        return save(articleBody);
+    }
 }

@@ -46,7 +46,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
         //amqpTemplate.convertAndSend("mail",map);
         redisTemplate.opsForValue().set(concatRedisKey(email),code);
         System.out.println("Verification code is "+code);
-        System.out.println("mail sent successfully");
+        System.out.println("");
     }
 
     @Override

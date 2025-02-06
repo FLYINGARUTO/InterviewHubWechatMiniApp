@@ -3,6 +3,8 @@ package com.m51.article.entity;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import lombok.Data;
+
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
@@ -14,6 +16,7 @@ import java.time.LocalDateTime;
  * @author Sean
  * @since 18:01:50
  */
+@Data
 @TableName("m_article")
 public class Article implements Serializable {
 

@@ -59,7 +59,7 @@ public class JwtUtil {
     }
 
     public  <T> T parseJwt(String jwt, Class<T> clazz){
-        //jwt=jwt.replace("Bearer ","");
+        jwt=jwt.replace("Bearer ","");
         Claims body= Jwts.parserBuilder()
                 .setAllowedClockSkewSeconds(60)
                 .setSigningKey(encodeSecret(secret))
