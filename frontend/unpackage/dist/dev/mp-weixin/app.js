@@ -1,6 +1,8 @@
 "use strict";
 Object.defineProperty(exports, Symbol.toStringTag, { value: "Module" });
 const common_vendor = require("./common/vendor.js");
+const stores_user = require("./stores/user.js");
+const utils_storage = require("./utils/storage.js");
 require("./utils/intercept.js");
 if (!Math) {
   "./pages/login.js";
@@ -9,17 +11,30 @@ if (!Math) {
   "./pages/index/index.js";
   "./pages/my/my.js";
   "./pages/articles/articles.js";
+  "./pages/articles/publish.js";
 }
 const _sfc_main = {
-  onLaunch: function() {
-    common_vendor.index.__f__("warn", "at App.vue:4", "当前组件仅支持 uni_modules 目录结构 ，请升级 HBuilderX 到 3.1.0 版本以上！");
-    common_vendor.index.__f__("log", "at App.vue:5", "App Launch");
+  onLaunch: async function() {
+    let token = utils_storage.storage.getStorageToken();
+    if (token) {
+      let useUser = stores_user.useUserStore();
+      await useUser.getUserInfo(token);
+      common_vendor.index.__f__("log", "at App.vue:15", "You are logged in automatically~");
+      common_vendor.index.showToast({
+        title: "You are logged in automatically~"
+      });
+      setTimeout(() => {
+        common_vendor.index.switchTab({
+          url: "/pages/index/index"
+        });
+      });
+    }
   },
   onShow: function() {
-    common_vendor.index.__f__("log", "at App.vue:8", "App Show");
+    common_vendor.index.__f__("log", "at App.vue:29", "App Show");
   },
   onHide: function() {
-    common_vendor.index.__f__("log", "at App.vue:11", "App Hide");
+    common_vendor.index.__f__("log", "at App.vue:32", "App Hide");
   }
 };
 function createApp() {

@@ -1,8 +1,29 @@
 <script>
+	import {
+		useUserStore
+	} from './stores/user';
+	import storage from './utils/storage';
 	export default {
-		onLaunch: function() {
-			console.warn('当前组件仅支持 uni_modules 目录结构 ，请升级 HBuilderX 到 3.1.0 版本以上！')
-			console.log('App Launch')
+		onLaunch: async function() {
+			// when there is valid token in the storage
+			// auto login
+			let token = storage.getStorageToken()
+			if (token) {
+				let useUser = useUserStore()
+				//store the user object 
+				await useUser.getUserInfo(token)
+				console.log("You are logged in automatically~")
+				uni.showToast({
+					title: "You are logged in automatically~"
+				})
+				setTimeout(() => {
+					uni.switchTab({
+						url: "/pages/index/index"
+					}), 2000
+				})
+
+			}
+
 		},
 		onShow: function() {
 			console.log('App Show')
@@ -18,10 +39,11 @@
 	@import '@/uni_modules/uni-scss/index.scss';
 	/* #ifndef APP-NVUE */
 	@import '@/static/customicons.css';
-	// 设置整个项目的背景色
-	page {
-		background-color: #f5f5f5;
-	}
+
+	// // 设置整个项目的背景色
+	// page {
+	// 	background-color: #f5f5f5;
+	// }
 
 	/* #endif */
 	.example-info {
@@ -29,8 +51,8 @@
 		color: #333;
 		padding: 10px;
 	}
-	
-	.round-button{
+
+	.round-button {
 		border-radius: 23px;
 	}
 </style>

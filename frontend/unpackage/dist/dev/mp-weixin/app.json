@@ -5,7 +5,8 @@
     "pages/reg/reg-success",
     "pages/index/index",
     "pages/my/my",
-    "pages/articles/articles"
+    "pages/articles/articles",
+    "pages/articles/publish"
   ],
   "window": {
     "navigationBarTextStyle": "black",
@@ -24,7 +25,7 @@
       },
       {
         "text": "帖子",
-        "pagePath": "pages/articles/articles",
+        "pagePath": "pages/articles/publish",
         "iconPath": "static/icon/publish0.png",
         "selectedIconPath": "static/icon/publish1.png"
       },

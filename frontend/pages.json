@@ -30,7 +30,13 @@
 			"style": {
 				"navigationBarTitleText": "帖子"
 			}
+		},{
+			"path": "pages/articles/publish",
+			"style": {
+				"navigationBarTitleText": "发布"
+			}
 		}
+
 	],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
@@ -59,7 +65,7 @@
 			},
 			{
 				"text": "帖子",
-				"pagePath": "pages/articles/articles",
+				"pagePath": "pages/articles/publish",
 				"iconPath": "static/icon/publish0.png",
 				"selectedIconPath": "static/icon/publish1.png"
 			},

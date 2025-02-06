@@ -28,6 +28,7 @@ const request = (option) => {
             // Show the error message
           });
           setTimeout(() => {
+            common_vendor.index.__f__("log", "at utils/request.js:27", "where error occured:", res);
             reject(new Error(errInfo));
           }, 3e3);
         }

@@ -1,12 +1,14 @@
 <script setup>
-	import {useUserStore} from "../../stores/user.js"
+	import {
+		useUserStore
+	} from "../../stores/user.js"
 	const useUser = useUserStore()
-const back2log=()=>{
+	const back2log = () => {
 
-	uni.redirectTo({
-		url: '/pages/login'
-	})
-}
+		uni.redirectTo({
+			url: '/pages/login'
+		})
+	}
 </script>
 
 <template>

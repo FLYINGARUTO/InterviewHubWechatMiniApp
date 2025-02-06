@@ -7230,7 +7230,7 @@ function initOnError() {
 function initRuntimeSocketService() {
   const hosts = "127.0.0.1,10.223.76.194";
   const port = "8090";
-  const id = "mp-weixin_6taSar";
+  const id = "mp-weixin_MLNXc4";
   const lazy = typeof swan !== "undefined";
   let restoreError = lazy ? () => {
   } : initOnError();
@@ -8970,6 +8970,12 @@ const pages = [
     style: {
       navigationBarTitleText: "帖子"
     }
+  },
+  {
+    path: "pages/articles/publish",
+    style: {
+      navigationBarTitleText: "发布"
+    }
   }
 ];
 const globalStyle = {
@@ -9002,7 +9008,7 @@ const tabBar = {
     },
     {
       text: "帖子",
-      pagePath: "pages/articles/articles",
+      pagePath: "pages/articles/publish",
       iconPath: "static/icon/publish0.png",
       selectedIconPath: "static/icon/publish1.png"
     },
