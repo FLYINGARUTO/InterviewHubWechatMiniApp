@@ -1,12 +1,15 @@
 package com.m51.article.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * <p>
@@ -70,6 +73,8 @@ public class Article implements Serializable {
      */
     private LocalDateTime lud;
 
+    @TableField(exist = false)
+    private Map<String,Object> other;
     public Long getId() {
         return id;
     }
@@ -149,6 +154,7 @@ public class Article implements Serializable {
     public void setLud(LocalDateTime lud) {
         this.lud = lud;
     }
+
 
     @Override
     public String toString() {
