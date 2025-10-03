@@ -7228,9 +7228,9 @@ function initOnError() {
   };
 }
 function initRuntimeSocketService() {
-  const hosts = "127.0.0.1,10.223.76.194";
+  const hosts = "127.0.0.1,192.168.110.161";
   const port = "8090";
-  const id = "mp-weixin_MLNXc4";
+  const id = "mp-weixin_CUcsrQ";
   const lazy = typeof swan !== "undefined";
   let restoreError = lazy ? () => {
   } : initOnError();
@@ -8934,6 +8934,12 @@ const createHook = (lifecycle) => (hook, target = getCurrentInstance()) => {
   !isInSSRComponentSetup && injectHook(lifecycle, hook, target);
 };
 const onLoad = /* @__PURE__ */ createHook(ON_LOAD);
+const easycom = {
+  autoscan: true,
+  custom: {
+    "^m-(.*)": "@/components/global/m-$1.vue"
+  }
+};
 const pages = [
   {
     path: "pages/login",
@@ -8956,7 +8962,8 @@ const pages = [
   {
     path: "pages/index/index",
     style: {
-      navigationBarTitleText: "首页"
+      navigationBarTitleText: "首页",
+      navigationStyle: "custom"
     }
   },
   {
@@ -8966,20 +8973,32 @@ const pages = [
     }
   },
   {
-    path: "pages/articles/articles",
-    style: {
-      navigationBarTitleText: "帖子"
-    }
-  },
-  {
     path: "pages/articles/publish",
     style: {
       navigationBarTitleText: "发布"
     }
+  },
+  {
+    path: "pages/articles/publish-success",
+    style: {
+      navigationBarTitleText: "发布成功"
+    }
+  },
+  {
+    path: "components/global/m-card",
+    style: {
+      navigationBarTitleText: ""
+    }
+  },
+  {
+    path: "pages/articles/article",
+    style: {
+      navigationBarTitleText: "详情"
+    }
   }
 ];
 const globalStyle = {
-  navigationBarTextStyle: "black",
+  navigationBarTextStyle: "white",
   navigationBarTitleText: "uni-app",
   navigationBarBackgroundColor: "#d2302c",
   backgroundColor: "#F8F8F8",
@@ -9007,7 +9026,7 @@ const tabBar = {
       selectedIconPath: "static/icon/home1.png"
     },
     {
-      text: "帖子",
+      text: "分享",
       pagePath: "pages/articles/publish",
       iconPath: "static/icon/publish0.png",
       selectedIconPath: "static/icon/publish1.png"
@@ -9021,6 +9040,7 @@ const tabBar = {
   ]
 };
 const e = {
+  easycom,
   pages,
   globalStyle,
   condition,
@@ -11886,5 +11906,6 @@ exports.resolveComponent = resolveComponent;
 exports.s = s$1;
 exports.sr = sr;
 exports.t = t$1;
+exports.toRefs = toRefs;
 exports.unref = unref;
 //# sourceMappingURL=../../.sourcemap/mp-weixin/common/vendor.js.map

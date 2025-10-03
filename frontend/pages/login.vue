@@ -69,10 +69,11 @@ const login=()=>{
 	formRef.value.validate().then( res=>{
 		console.log("表单规则验证通过：",res)
 		
-		store.login(formData.username,formData.password).then(res=>{
+		store.login(formData.username,formData.password).then(async res=>{
 			uni.showToast({
 				title:"login success"
 			})
+			await store.getUserInfo(storage.getStorageToken()) //获取token，解析为user对象存入pinia
 			uni.switchTab({
 				url:"/pages/index/index"
 			})

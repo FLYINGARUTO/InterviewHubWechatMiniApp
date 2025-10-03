@@ -1,0 +1,39 @@
+/* 水平间距 */
+/* 水平间距 */
+.top {
+  height: 100px;
+  background-color: #d2302c;
+  padding: 20px 0 10px;
+}
+.top .title {
+  color: white;
+  font-weight: bold;
+  padding-left: 15px;
+}
+.top .categoryTab {
+  display: flex;
+  padding-left: 15px;
+  color: lightgray;
+}
+.top .categoryTab .item {
+  text-align: center;
+  font-size: 12px;
+  margin-right: 10px;
+  display: flex;
+  flex-direction: column;
+}
+.top .categoryTab .active {
+  font-weight: bold;
+  color: white;
+}
+.no-data {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 14px;
+  color: gray;
+  margin: 100px 0 50px;
+}
+.no-data image {
+  width: 60px;
+}

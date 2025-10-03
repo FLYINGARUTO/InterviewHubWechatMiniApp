@@ -4,6 +4,7 @@
 	} from './stores/user';
 	import storage from './utils/storage';
 	export default {
+		//uniapp的生命周期
 		onLaunch: async function() {
 			// when there is valid token in the storage
 			// auto login

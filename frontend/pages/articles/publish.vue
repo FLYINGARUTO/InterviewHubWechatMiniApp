@@ -50,36 +50,36 @@
 		},
 	})
 	const category = ref([])
-	onLoad(() => {
-		baseApi.getParamListByBaseName('articleType').then(res => {
-			//console.log('-----articleType-----:', res.data.data)
-			category.value = res.data.data.map(item => {
-				return {
-					value: item.paramValue,
-					text: item.paramName
-				}
-			})
-
+	onLoad(async () => {
+		let res = await baseApi.getParamListByBaseName('articleType')
+		category.value = res.data.data.map(item=>{
+			return {
+				value: item.paramValue,
+				text: item.paramName
+			}
 		})
 
 
 	})
 	import articleApi from '@/api/article.js'
-	const publish = () =>{
-		pubFormRef.value.validate().then(() => {
+	const publish = () => {
+		pubFormRef.value.validate()
+		.then(	() => {
 			console.log("form is valid : ",pubForm.value)
 			articleApi.publish(pubForm.value).then(res=>{
-				console.log('published: ',res.data)
-				pubForm.value={}
-				pubFormRef.value.clearValidate()//clear the first two inputs
-				clearDetail()//clear the editor
-				uni.showToast({
-					title:"post success"
-				})
+					console.log('published: ',res.data)
+					pubForm.value={}
+					pubFormRef.value.clearValidate()//clear the first two inputs
+					clearDetail()//clear the editor
+					// uni.showToast({
+					// 	title:"post success"
+					// })
+					uni.redirectTo({
+						url:'/pages/articles/publish-success'
+					})
 			})
-
-			}
-		).catch(()=>{
+		})	
+		.catch(()=>{
 			console.log("form is invalid : ",pubForm.value)
 		})
 	}
@@ -100,6 +100,6 @@
 		border-radius: 5px;
 		padding: 10px;
 		border: 1px solid #e5e5e5;
-		height: 100vh-35;
+		height: 100vh-20;
 	}
 </style>

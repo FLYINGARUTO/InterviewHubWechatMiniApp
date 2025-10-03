@@ -28,7 +28,12 @@ const request = (option) => {
             // Show the error message
           });
           setTimeout(() => {
-            common_vendor.index.__f__("log", "at utils/request.js:27", "where error occured:", res);
+            if (res.data.code == 20003) {
+              common_vendor.index.reLaunch({
+                url: "/pages/login"
+              });
+            }
+            common_vendor.index.__f__("log", "at utils/request.js:32", "where error occured:", res);
             reject(new Error(errInfo));
           }, 3e3);
         }

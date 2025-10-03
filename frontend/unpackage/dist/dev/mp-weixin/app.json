@@ -5,11 +5,13 @@
     "pages/reg/reg-success",
     "pages/index/index",
     "pages/my/my",
-    "pages/articles/articles",
-    "pages/articles/publish"
+    "pages/articles/publish",
+    "pages/articles/publish-success",
+    "components/global/m-card",
+    "pages/articles/article"
   ],
   "window": {
-    "navigationBarTextStyle": "black",
+    "navigationBarTextStyle": "white",
     "navigationBarTitleText": "uni-app",
     "navigationBarBackgroundColor": "#d2302c",
     "backgroundColor": "#F8F8F8"
@@ -24,7 +26,7 @@
         "selectedIconPath": "static/icon/home1.png"
       },
       {
-        "text": "帖子",
+        "text": "分享",
         "pagePath": "pages/articles/publish",
         "iconPath": "static/icon/publish0.png",
         "selectedIconPath": "static/icon/publish1.png"

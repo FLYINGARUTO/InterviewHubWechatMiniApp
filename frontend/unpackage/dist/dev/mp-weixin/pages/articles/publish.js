@@ -46,31 +46,28 @@ const _sfc_main = {
       }
     });
     const category = common_vendor.ref([]);
-    common_vendor.onLoad(() => {
-      api_base.baseApi.getParamListByBaseName("articleType").then((res) => {
-        category.value = res.data.data.map((item) => {
-          return {
-            value: item.paramValue,
-            text: item.paramName
-          };
-        });
+    common_vendor.onLoad(async () => {
+      let res = await api_base.baseApi.getParamListByBaseName("articleType");
+      category.value = res.data.data.map((item) => {
+        return {
+          value: item.paramValue,
+          text: item.paramName
+        };
       });
     });
     const publish = () => {
-      pubFormRef.value.validate().then(
-        () => {
-          common_vendor.index.__f__("log", "at pages/articles/publish.vue:70", "form is valid : ", pubForm.value);
-          api_article.articleApi.publish(pubForm.value).then((res) => {
-            common_vendor.index.__f__("log", "at pages/articles/publish.vue:72", "published: ", res.data);
-            pubForm.value = {};
-            pubFormRef.value.clearValidate();
-            clearDetail();
-            common_vendor.index.showToast({
-              title: "post success"
-            });
+      pubFormRef.value.validate().then(() => {
+        common_vendor.index.__f__("log", "at pages/articles/publish.vue:68", "form is valid : ", pubForm.value);
+        api_article.articleApi.publish(pubForm.value).then((res) => {
+          common_vendor.index.__f__("log", "at pages/articles/publish.vue:70", "published: ", res.data);
+          pubForm.value = {};
+          pubFormRef.value.clearValidate();
+          clearDetail();
+          common_vendor.index.redirectTo({
+            url: "/pages/articles/publish-success"
           });
-        }
-      ).catch(() => {
+        });
+      }).catch(() => {
         common_vendor.index.__f__("log", "at pages/articles/publish.vue:83", "form is invalid : ", pubForm.value);
       });
     };

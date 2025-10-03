@@ -24,6 +24,11 @@ const request = (option) => {
                         title: errInfo // Show the error message
                     });
                     setTimeout(() => {
+						if(res.data.code==20003){
+							uni.reLaunch({
+								url:'/pages/login'
+							})
+						}
 						console.log("where error occured:",res)
                         reject(new Error(errInfo)); // Reject the promise after a delay
                     }, 3000);
