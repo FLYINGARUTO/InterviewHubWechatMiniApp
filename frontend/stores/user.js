@@ -16,13 +16,10 @@ export const useUserStore = defineStore("user", () => {
 				username,
 				password
 			}).then(async res => {
-				//console.log("userApi.login response: ", res)
 				token.value = res.data.data
-				//// ✅ 先等待 getUserInfo 解析完 Promise，再赋值给 user.value
-				const userInfo = await getUserInfo(res.data.data)
-				user.value=userInfo.data
-				//console.log("after login, user:",user.value)
-				//console.log(user.value.username)
+				await getUserInfo(res.data.data)
+				
+
 				storage.setStorageToken(res.data.data)
 				
 				resolve(res.data)
@@ -36,8 +33,8 @@ export const useUserStore = defineStore("user", () => {
 	function getUserInfo(token) {
 		return new Promise((resolve, reject) => {
 			userApi.getUserInfo(token).then(res => {
-				user.value = res.data
-				resolve(res.data)
+				user.value = res.data.data
+				resolve(res.data.data)
 			}).catch(err => reject(err))
 		})
 	}

@@ -20,11 +20,6 @@ const _sfc_main = {
   __name: "index",
   setup(__props) {
     stores_user.useUserStore();
-    const back2log = () => {
-      common_vendor.index.redirectTo({
-        url: "/pages/login"
-      });
-    };
     const safeTop = common_vendor.ref(0);
     const triggered = common_vendor.ref(false);
     const loadMoreStatus = common_vendor.ref("more");
@@ -135,8 +130,7 @@ const _sfc_main = {
         k: "calc(100vh - " + (safeTop.value + 110) + "px)",
         l: triggered.value,
         m: common_vendor.o(refreshFeed),
-        n: common_vendor.o(loadMore),
-        o: common_vendor.o(back2log)
+        n: common_vendor.o(loadMore)
       });
     };
   }

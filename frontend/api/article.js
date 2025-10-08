@@ -24,13 +24,67 @@ export default {
 	},
 	follow(authorId){
 		return request({
-			url:`/article/follow/${authorId}`
+			url:`/interaction/follow/${authorId}`
 		})
 	},
 	unfollow(authorId){
 		return request({
-			url:`/article/unfollow/${authorId}`,
+			url:`/interaction/unfollow/${authorId}`,
 
+		})
+	},
+	like(params){
+		return request({
+			url:`/interaction/like`,
+			method:"POST",
+			data: params
+		})
+	},
+	unlike(params){
+		return request({
+			url:`/interaction/unlike`,
+			method:"DELETE",
+			data: params
+	
+		})
+	},
+	star(params){
+		return request({
+			url:`/interaction/star`,
+			method:"POST",
+			data: params
+		})
+	},
+	unstar(params){
+		return request({
+			url:`/interaction/unstar`,
+			method:"DELETE",
+			data: params
+	
+		})
+	},
+	comment(params){
+		return request({
+			url:"/article/comment/new",
+			method:"POST",
+			data:params
+		})
+	},
+	getInteractionData(articleId,userId){
+		return request({
+			url:`/interaction/article/${articleId}/${userId}`
+		})
+	},
+	getComments(params){
+		return request({
+			url:"/article/comment/list",
+			method:"POST",
+			data:params
+		})
+	},
+	getUserStatistics(userId){
+		return request({
+			url:`/interaction/user-statistics/${userId}`
 		})
 	}
 }

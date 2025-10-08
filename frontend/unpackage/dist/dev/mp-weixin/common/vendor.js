@@ -7228,9 +7228,9 @@ function initOnError() {
   };
 }
 function initRuntimeSocketService() {
-  const hosts = "127.0.0.1,192.168.110.161";
+  const hosts = "127.0.0.1,192.168.110.93";
   const port = "8090";
-  const id = "mp-weixin_CUcsrQ";
+  const id = "mp-weixin_iumh44";
   const lazy = typeof swan !== "undefined";
   let restoreError = lazy ? () => {
   } : initOnError();
@@ -8969,7 +8969,8 @@ const pages = [
   {
     path: "pages/my/my",
     style: {
-      navigationBarTitleText: "我的"
+      navigationBarTitleText: "我的",
+      navigationStyle: "custom"
     }
   },
   {

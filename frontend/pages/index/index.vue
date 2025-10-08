@@ -136,7 +136,7 @@
 		</scroll-view>
 			
 
-		<button @click="back2log">Login</button>
+		<!-- <button @click="back2log">Login</button> -->
 
 	</view>
 </template>

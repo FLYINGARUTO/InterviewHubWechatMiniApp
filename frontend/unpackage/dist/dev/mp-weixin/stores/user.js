@@ -12,8 +12,7 @@ const useUserStore = common_vendor.defineStore("user", () => {
         password
       }).then(async (res) => {
         token.value = res.data.data;
-        const userInfo = await getUserInfo(res.data.data);
-        user.value = userInfo.data;
+        await getUserInfo(res.data.data);
         utils_storage.storage.setStorageToken(res.data.data);
         resolve(res.data);
       }).catch((err) => reject(err));
@@ -22,8 +21,8 @@ const useUserStore = common_vendor.defineStore("user", () => {
   function getUserInfo(token2) {
     return new Promise((resolve, reject) => {
       api_user.userApi.getUserInfo(token2).then((res) => {
-        user.value = res.data;
-        resolve(res.data);
+        user.value = res.data.data;
+        resolve(res.data.data);
       }).catch((err) => reject(err));
     });
   }

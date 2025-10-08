@@ -1,0 +1,38 @@
+/* 水平间距 */
+/* 水平间距 */
+.my {
+  background: linear-gradient(to top, #fafafa 45%, #d2302c 80%, #d2302c 100%);
+}
+.my .statistics {
+  color: white;
+  padding: 20px 20px 0;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 30px;
+}
+.my .statistics .statistics-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.my .opr-list {
+  padding: 20px 20px 0;
+  display: flex;
+  justify-content: space-between;
+  background-color: white;
+  color: #5d5d5d;
+  border-radius: 20px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+.my .opr-list .item {
+  width: 23%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 20px;
+}
+.my .opr-list .item text {
+  font-size: 14px;
+  color: #404040;
+}

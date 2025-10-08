@@ -24,12 +24,64 @@ const articleApi = {
   },
   follow(authorId) {
     return utils_request.request({
-      url: `/article/follow/${authorId}`
+      url: `/interaction/follow/${authorId}`
     });
   },
   unfollow(authorId) {
     return utils_request.request({
-      url: `/article/unfollow/${authorId}`
+      url: `/interaction/unfollow/${authorId}`
+    });
+  },
+  like(params) {
+    return utils_request.request({
+      url: `/interaction/like`,
+      method: "POST",
+      data: params
+    });
+  },
+  unlike(params) {
+    return utils_request.request({
+      url: `/interaction/unlike`,
+      method: "DELETE",
+      data: params
+    });
+  },
+  star(params) {
+    return utils_request.request({
+      url: `/interaction/star`,
+      method: "POST",
+      data: params
+    });
+  },
+  unstar(params) {
+    return utils_request.request({
+      url: `/interaction/unstar`,
+      method: "DELETE",
+      data: params
+    });
+  },
+  comment(params) {
+    return utils_request.request({
+      url: "/article/comment/new",
+      method: "POST",
+      data: params
+    });
+  },
+  getInteractionData(articleId, userId) {
+    return utils_request.request({
+      url: `/interaction/article/${articleId}/${userId}`
+    });
+  },
+  getComments(params) {
+    return utils_request.request({
+      url: "/article/comment/list",
+      method: "POST",
+      data: params
+    });
+  },
+  getUserStatistics(userId) {
+    return utils_request.request({
+      url: `/interaction/user-statistics/${userId}`
     });
   }
 };
