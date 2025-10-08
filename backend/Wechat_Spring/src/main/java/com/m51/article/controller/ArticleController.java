@@ -77,6 +77,9 @@ public class ArticleController {
         List<Article> records = page.getRecords();
         records=records.stream().map(item ->{
             item.setAvatar(minioUtils.getUrl(item.getAvatar()));
+            item.setViewCount(interactionService.getViewCount(item.getId()));
+            item.setLikeCount(interactionService.getArticleLikeCount(item.getId()));
+            item.setStarCount(interactionService.getArticleStarCount(item.getId()));
             return item;
         }).toList();
         Map<String,Object> data=new HashMap();
@@ -101,25 +104,5 @@ public class ArticleController {
         return Result.Success(article);
     }
 
-    @Operation(summary = "follow")
-    @GetMapping("/follow/{authorId}")
-    public Result<Object> follow(@PathVariable("authorId") Integer authorId,@RequestHeader("Authorization") String token){
-        User user=jwtUtil.parseJwt(token, User.class);
 
-        if(interactionService.follow(authorId, user.getId())){
-            return Result.Success();
-        }
-        return Result.Fail();
-    }
-
-    @Operation(summary = "unfollow")
-    @GetMapping("/unfollow/{authorId}")
-    public Result<Object> unfollow(@PathVariable("authorId") Integer authorId,@RequestHeader("Authorization") String token){
-        User user=jwtUtil.parseJwt(token, User.class);
-
-        if(interactionService.unfollow(authorId, user.getId())){
-            return Result.Success();
-        }
-        return Result.Fail();
-    }
 }

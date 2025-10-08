@@ -3,8 +3,11 @@ package com.m51.article.entity;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import lombok.Data;
+
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.Date;
 
 /**
  * <p>
@@ -14,6 +17,7 @@ import java.time.LocalDateTime;
  * @author Sean
  * @since 18:01:51
  */
+@Data
 @TableName("m_comment")
 public class Comment implements Serializable {
 
@@ -32,73 +36,9 @@ public class Comment implements Serializable {
 
     private String comment;
 
-    private LocalDateTime fcd;
+    private Date fcd;
 
-    private LocalDateTime lud;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Long getArticleId() {
-        return articleId;
-    }
-
-    public void setArticleId(Long articleId) {
-        this.articleId = articleId;
-    }
-
-    public Integer getAuthorId() {
-        return authorId;
-    }
-
-    public void setAuthorId(Integer authorId) {
-        this.authorId = authorId;
-    }
-
-    public String getAuthorName() {
-        return authorName;
-    }
-
-    public void setAuthorName(String authorName) {
-        this.authorName = authorName;
-    }
-
-    public String getAvatar() {
-        return avatar;
-    }
-
-    public void setAvatar(String avatar) {
-        this.avatar = avatar;
-    }
-
-    public String getComment() {
-        return comment;
-    }
-
-    public void setComment(String comment) {
-        this.comment = comment;
-    }
-
-    public LocalDateTime getFcd() {
-        return fcd;
-    }
-
-    public void setFcd(LocalDateTime fcd) {
-        this.fcd = fcd;
-    }
-
-    public LocalDateTime getLud() {
-        return lud;
-    }
-
-    public void setLud(LocalDateTime lud) {
-        this.lud = lud;
-    }
+    private Date lud;
 
     @Override
     public String toString() {

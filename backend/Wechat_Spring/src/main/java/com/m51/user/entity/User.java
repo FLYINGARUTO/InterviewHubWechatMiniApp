@@ -1,6 +1,7 @@
 package com.m51.user.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
@@ -86,5 +87,8 @@ public class User implements Serializable {
      * 头像地址
      */
     private String avatar;
+
+    @TableField(exist = false)
+    private String avatarUrl;
 
 }

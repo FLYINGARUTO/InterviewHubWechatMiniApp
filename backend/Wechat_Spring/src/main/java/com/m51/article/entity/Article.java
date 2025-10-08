@@ -75,6 +75,16 @@ public class Article implements Serializable {
 
     @TableField(exist = false)
     private Map<String,Object> other;
+
+    @TableField(exist = false)
+    private Long viewCount;
+
+    @TableField(exist = false)
+    private Long likeCount;
+
+    @TableField(exist = false)
+    private Long starCount;
+
     public Long getId() {
         return id;
     }
