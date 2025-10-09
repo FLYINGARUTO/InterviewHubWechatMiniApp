@@ -52,13 +52,19 @@ export const useUserStore = defineStore("user", () => {
 			})
 		})
 	}
-
+	
+	function refresh(newUser,newToken){
+		user.value=newUser
+		token.value=newToken
+		storage.setStorageToken(newToken)
+	}
 
 	return {
 		user,
 		token,
 		login,
 		logout,
-		getUserInfo
+		getUserInfo,
+		refresh
 	}
 })

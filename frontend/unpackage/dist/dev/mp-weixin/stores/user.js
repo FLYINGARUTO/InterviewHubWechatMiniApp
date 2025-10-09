@@ -38,12 +38,18 @@ const useUserStore = common_vendor.defineStore("user", () => {
       });
     });
   }
+  function refresh(newUser, newToken) {
+    user.value = newUser;
+    token.value = newToken;
+    utils_storage.storage.setStorageToken(newToken);
+  }
   return {
     user,
     token,
     login,
     logout,
-    getUserInfo
+    getUserInfo,
+    refresh
   };
 });
 exports.useUserStore = useUserStore;

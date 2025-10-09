@@ -40,6 +40,13 @@ const userApi = {
     return utils_request.request({
       url: `/user/info/${token}`
     });
+  },
+  updateAvatar(data) {
+    return utils_request.request({
+      url: "/user/avatar",
+      method: "PUT",
+      data
+    });
   }
 };
 exports.userApi = userApi;

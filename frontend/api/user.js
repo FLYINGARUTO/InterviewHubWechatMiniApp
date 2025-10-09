@@ -42,5 +42,12 @@ export default{
 			url: `/user/info/${token}`,
 
 		})
+	},
+	updateAvatar(data){
+		return request({
+			url:'/user/avatar',
+			method:"PUT",
+			data: data
+		})
 	}
 }

@@ -14,6 +14,7 @@ if (!Math) {
   "./pages/articles/publish-success.js";
   "./components/global/m-card.js";
   "./pages/articles/article.js";
+  "./pages/my/my-fav.js";
 }
 const _sfc_main = {
   //uniapp的生命周期

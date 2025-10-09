@@ -6,7 +6,7 @@
 		<view style="padding: 30px 20px 20px" :style="{height: 'calc(100vh - ' + (safeTop) + 'px)'}">
 			<view style="display: flex;justify-content: space-between; align-items: center;">
 				<view style="display: flex;">
-					<button type="default" style="padding: 0; width: 56px; height: 56px; border-radius: 28px;" size="mini">
+					<button type="default" style="padding: 0; width: 56px; height: 56px; border-radius: 28px;" size="mini" open-type="chooseAvatar" @chooseavatar="chooseavatar">
 						<image :src="userStore.user.avatarUrl" mode="widthFix" style="width: 56px;" ></image>
 					</button>
 					<view style="display: flex; flex-direction: column; align-items: center; margin-left: 10px;">
@@ -58,7 +58,7 @@
 					<uni-icons type="flag" color="#404040" size="28"></uni-icons>
 					<text>浏览历史</text>
 				</view>
-				<view class="item">
+				<view class="item" @tap="toMyFavList">
 					<uni-icons type="star" color="#404040" size="28"></uni-icons>
 					<text>收藏夹</text>
 				</view>
@@ -115,10 +115,12 @@
 
 <script setup>
 import { ref } from 'vue'
-import { onLoad } from '@dcloudio/uni-app'
+import { onLoad,onShow } from '@dcloudio/uni-app'
 import { useUserStore } from '../../stores/user'
 import { storeToRefs } from 'pinia'
 import  articleApi  from '../../api/article.js'
+import fileApi from '../../api/file.js'
+import userApi from '../../api/user.js'
 const userStore = useUserStore()
 
 const safeTop=ref(0)
@@ -126,11 +128,36 @@ const userStatistics=ref({})
 onLoad(async()=>{
 	let {safeArea} = uni.getSystemInfoSync()
 	safeTop.value=safeArea.top;
-	
+	let res1= await articleApi.getUserStatistics(userStore.user.id)
+	userStatistics.value=res1.data.data
+	console.log("互动数据: ",res1.data.data)
+
+})
+onShow(async()=>{
 	let res1= await articleApi.getUserStatistics(userStore.user.id)
 	userStatistics.value=res1.data.data
 	console.log("互动数据: ",res1.data.data)
 })
+const chooseavatar = async (e) => {
+
+	let res =  await fileApi.uploadFile(e.detail.avatarUrl)
+	console.log(res.data)
+	let updateRes = await userApi.updateAvatar({
+		userId: userStore.user.id, 
+		avatar: res.data.fileName
+	})
+	console.log("头像更新： ",updateRes.data.data)
+	// 更新pinia
+	userStore.refresh(updateRes.data.data.user,updateRes.data.data.token)
+
+	
+}
+
+const toMyFavList=()=>{
+	uni.navigateTo({
+		url:"/pages/my/my-fav?userId="+userStore.user.id
+	})
+}
 </script>
 
 <style lang="scss">

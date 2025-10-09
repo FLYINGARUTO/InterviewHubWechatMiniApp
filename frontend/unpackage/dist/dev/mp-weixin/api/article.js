@@ -83,6 +83,11 @@ const articleApi = {
     return utils_request.request({
       url: `/interaction/user-statistics/${userId}`
     });
+  },
+  getMyFavList(userId) {
+    return utils_request.request({
+      url: `/article/star-list/${userId}`
+    });
   }
 };
 exports.articleApi = articleApi;

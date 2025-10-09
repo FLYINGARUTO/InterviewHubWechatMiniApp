@@ -86,5 +86,11 @@ export default {
 		return request({
 			url:`/interaction/user-statistics/${userId}`
 		})
+	},
+	getMyFavList(userId){
+		return request({
+			url:`/article/star-list/${userId}`
+		})
 	}
+	
 }

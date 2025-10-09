@@ -7228,7 +7228,7 @@ function initOnError() {
   };
 }
 function initRuntimeSocketService() {
-  const hosts = "127.0.0.1,192.168.110.93";
+  const hosts = "127.0.0.1,192.168.31.160";
   const port = "8090";
   const id = "mp-weixin_iumh44";
   const lazy = typeof swan !== "undefined";
@@ -8933,6 +8933,7 @@ const Pinia = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.definePropert
 const createHook = (lifecycle) => (hook, target = getCurrentInstance()) => {
   !isInSSRComponentSetup && injectHook(lifecycle, hook, target);
 };
+const onShow = /* @__PURE__ */ createHook(ON_SHOW);
 const onLoad = /* @__PURE__ */ createHook(ON_LOAD);
 const easycom = {
   autoscan: true,
@@ -8995,6 +8996,12 @@ const pages = [
     path: "pages/articles/article",
     style: {
       navigationBarTitleText: "详情"
+    }
+  },
+  {
+    path: "pages/my/my-fav",
+    style: {
+      navigationBarTitleText: "我的收藏"
     }
   }
 ];
@@ -11900,6 +11907,7 @@ exports.initVueI18n = initVueI18n;
 exports.n = n$1;
 exports.o = o$1;
 exports.onLoad = onLoad;
+exports.onShow = onShow;
 exports.p = p$1;
 exports.reactive = reactive;
 exports.ref = ref;

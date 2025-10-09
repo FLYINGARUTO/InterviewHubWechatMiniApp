@@ -8,7 +8,8 @@
     "pages/articles/publish",
     "pages/articles/publish-success",
     "components/global/m-card",
-    "pages/articles/article"
+    "pages/articles/article",
+    "pages/my/my-fav"
   ],
   "window": {
     "navigationBarTextStyle": "white",
