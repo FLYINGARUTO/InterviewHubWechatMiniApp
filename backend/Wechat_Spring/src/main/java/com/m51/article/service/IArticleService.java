@@ -6,6 +6,9 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import com.m51.article.vo.ArticleQuery;
 import com.m51.user.entity.User;
 
+import java.util.List;
+import java.util.Set;
+
 /**
  * <p>
  *  服务类
@@ -21,6 +24,8 @@ public interface IArticleService extends IService<Article> {
     Page<Article> getArticleList(ArticleQuery query);
 
     Article getArticle(Long id);
+
+    List<Article> getStarredList(Integer userId);
 
 //    Page<Article> getArticleList(ArticleQuery query);
 }

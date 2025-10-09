@@ -1,6 +1,9 @@
 package com.m51.user.controller;
 
+import com.m51.article.entity.Article;
+import com.m51.common.util.JwtUtil;
 import com.m51.common.vo.Result;
+import com.m51.user.dto.AvatarUpdate;
 import com.m51.user.entity.User;
 import com.m51.user.service.IUserService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -14,9 +17,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.stereotype.Controller;
 
-import java.util.List;
-import java.util.Map;
-import java.util.Random;
+import java.util.*;
 
 /**
  * <p>
@@ -32,7 +33,8 @@ import java.util.Random;
 public class UserController {
     @Autowired
     private IUserService service;
-
+    @Autowired
+    private JwtUtil jwtUtil;
     @Operation(summary = "username count",description = "get count of username")
     @GetMapping("/count/{username}")
     public Result<Integer> getCountByUsername(@PathVariable("username") String username){
@@ -84,6 +86,16 @@ public class UserController {
             return Result.Success(user);
         else
             return Result.fail(20003,"user not logged in ");
+    }
+    @Operation(summary = "update avatar")
+    @PutMapping("/avatar")
+    public Result<Map<String,Object>> updateUserAvatar(@RequestBody AvatarUpdate updateQuery){
+        User user= service.updateAvatar(updateQuery.getUserId(),updateQuery.getAvatar());
+        String token= jwtUtil.createJwt(user);
+        Map<String,Object> data=new HashMap<>();
+        data.put("user",user);
+        data.put("token",token);
+        return Result.Success(data);
     }
 
 

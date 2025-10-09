@@ -19,6 +19,7 @@ import org.springframework.stereotype.Controller;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 /**
@@ -103,6 +104,10 @@ public class ArticleController {
         article.setOther(other);
         return Result.Success(article);
     }
-
-
+    @Operation(summary = "returns the starred article list of the user")
+    @GetMapping("/star-list/{userId}")
+    public Result<List<Article>> getStarredList(@PathVariable Integer userId){
+        List<Article> starredList=articleService.getStarredList(userId);
+        return Result.Success(starredList);
+    }
 }

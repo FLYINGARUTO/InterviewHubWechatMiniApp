@@ -6,11 +6,17 @@ import com.m51.article.entity.Article;
 import com.m51.article.mapper.ArticleMapper;
 import com.m51.article.service.IArticleService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.m51.article.service.InteractionService;
 import com.m51.article.vo.ArticleQuery;
+import com.m51.file.utils.MinioUtils;
 import com.m51.user.entity.User;
-import org.checkerframework.checker.units.qual.A;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
+
+import java.util.List;
+import java.util.Set;
 
 /**
  * <p>
@@ -32,7 +38,13 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article> impl
 //        this.page(page,wrapper);
 //        return page;
 //
+    @Autowired
+    private RedisTemplate template;
+    @Autowired
+    private InteractionService interactionService;
 
+    @Autowired
+    private MinioUtils minioUtils;
     @Override
     public Article getArticle(Long id) {
         LambdaQueryWrapper<Article> wrapper=new LambdaQueryWrapper<>();
@@ -59,5 +71,25 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article> impl
         articleBody.setAuthorName(user.getNickname());
         articleBody.setDeleted(0);
         return save(articleBody);
+    }
+    private String userStarKey(Integer userId){
+        return "user:"+userId+":star";
+    }
+    @Override
+    public List<Article> getStarredList(Integer userId) {
+        Set<Integer> starredList = template.opsForSet().members(userStarKey(userId));
+        if(starredList==null || starredList.size()==0) return null;
+        LambdaQueryWrapper<Article> wrapper=new LambdaQueryWrapper();
+        wrapper.in(Article::getId,starredList);
+        wrapper.orderByDesc(Article::getId);
+        List<Article> list = this.list(wrapper);
+        list.stream().map((item)->{
+                item.setAvatar(minioUtils.getUrl(item.getAvatar()));
+                item.setViewCount(interactionService.getViewCount(item.getId()));
+                item.setLikeCount(interactionService.getArticleLikeCount(item.getId()));
+                item.setStarCount(interactionService.getArticleStarCount(item.getId()));
+                return item;
+        }).toList();
+        return list;
     }
 }

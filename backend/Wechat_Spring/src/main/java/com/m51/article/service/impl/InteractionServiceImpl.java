@@ -1,5 +1,8 @@
 package com.m51.article.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.m51.article.controller.ArticleController;
+import com.m51.article.entity.Article;
 import com.m51.article.service.InteractionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -7,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 @Service
 public class InteractionServiceImpl implements InteractionService {
@@ -82,8 +86,8 @@ public class InteractionServiceImpl implements InteractionService {
     private String articleStarKey(Long articleId){
         return "article:"+articleId+":star";
     }
-    private String authorStarKey(Integer authorId){
-        return "author:"+authorId+":star";
+    private String userStarKey(Integer userId){
+        return "user:"+userId+":star";
     }
     @Override
     public Map<String, Object> like(Long articleId, Integer authorId, Integer userId) {
@@ -124,14 +128,14 @@ public class InteractionServiceImpl implements InteractionService {
     @Override
     public Map<String, Object> star(Long articleId, Integer authorId, Integer userId) {
         template.opsForSet().add(articleStarKey(articleId),userId);
-        template.opsForSet().add(authorStarKey(authorId),userId+"|"+articleId);
+        template.opsForSet().add(userStarKey(userId),articleId);
         return getInteraction(articleId,userId);
     }
 
     @Override
     public Map<String, Object> unstar(Long articleId, Integer authorId, Integer userId) {
         template.opsForSet().remove(articleStarKey(articleId),userId);
-        template.opsForSet().remove(authorStarKey(authorId),userId+"|"+articleId);
+        template.opsForSet().remove(userStarKey(userId),articleId);
         return getInteraction(articleId,userId);
     }
 
@@ -147,10 +151,11 @@ public class InteractionServiceImpl implements InteractionService {
     }
 
     @Override
-    public Long getAuthorStarCount(Integer authorId) {
-        Long size=template.opsForSet().size(authorStarKey(authorId));
+    public Long getUserStarCount(Integer userId) {
+        Long size=template.opsForSet().size(userStarKey(userId));
         return size;
     }
+
 
 
 
@@ -170,7 +175,7 @@ public class InteractionServiceImpl implements InteractionService {
         statistics.put("fansCount",followerCount(userId));//粉丝
         statistics.put("followingCount",followingCount(userId));//关注
         statistics.put("likeCount",getAuthorLikeCount(userId));//获赞
-        statistics.put("starCount",getAuthorStarCount(userId));//收藏
+        statistics.put("starCount",getUserStarCount(userId));//收藏
         return statistics;
     }
 }

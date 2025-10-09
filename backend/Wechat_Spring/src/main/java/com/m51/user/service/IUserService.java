@@ -23,4 +23,6 @@ public interface IUserService extends IService<User> {
     void userRegister(User user);
 
     User getUser(String token);
+
+    User updateAvatar(Integer userId, String avatar);
 }

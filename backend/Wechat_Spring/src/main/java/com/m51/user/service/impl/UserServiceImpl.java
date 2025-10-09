@@ -2,6 +2,7 @@ package com.m51.user.service.impl;
 
 import com.m51.common.util.JwtUtil;
 import com.m51.common.vo.Result;
+import com.m51.file.utils.MinioUtils;
 import com.m51.user.entity.User;
 import com.m51.user.mapper.UserMapper;
 import com.m51.user.service.IUserService;
@@ -33,6 +34,8 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
     private RedisTemplate redisTemplate;
     @Autowired
     private JwtUtil jwtUtil;
+    @Autowired
+    private MinioUtils minioUtils;
     @Override
     public Integer getCountByUsername(String username) {
         return this.baseMapper.getCountByUsername(username);
@@ -75,6 +78,18 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
         user.setType(1);
         save(user);
 
+
+    }
+
+    @Override
+    public User updateAvatar(Integer userId, String avatar) {
+        if(baseMapper.updateAvatar(userId,avatar)==1){
+            User user=baseMapper.getUserById(userId);
+            user.setAvatarUrl(minioUtils.getUrl(user.getAvatar()));
+            user.setPassword("");
+            return user;
+        }
+        return null;
 
     }
 }

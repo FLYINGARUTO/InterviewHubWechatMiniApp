@@ -1,10 +1,13 @@
 package com.m51.article.service;
 
+import com.baomidou.mybatisplus.extension.service.IService;
+import com.m51.article.entity.Article;
 import io.swagger.v3.oas.models.security.SecurityScheme;
 
 import java.util.Map;
+import java.util.Set;
 
-public interface InteractionService {
+public interface InteractionService{
 
 //    increment and get
      Long viewCountIncrement(Long articleId);
@@ -55,10 +58,10 @@ public interface InteractionService {
       * 文章获收藏数
       */
      Long getArticleStarCount(Long articleId);
-     /**
-      * 获取作者总共获收藏数
-      */
-     Long getAuthorStarCount(Integer authorId);
+
+     Long getUserStarCount(Integer UserId);
+
+
      /**
       * 获取互动数据
       */
